@@ -10,5 +10,10 @@
   <%= @animal.status %>      
   <% if @animal.disponivel? %>
     <%= link_to 'Adotar', new_order_path(animal_id: @animal)%>
+    <% if @favoritos_atuais.animal.ids.include?(@animal.id) %>
+      <%= link_to 'Desfavoritar', favoritos_path(animal_id: @animal), method: :delete %>
+    <% else %>
+      <%= link_to 'Favoritar', favoritos_path(animal_id: @animal), method: :post %>
+    <% end %>
   <% end %>  
 <% end %>

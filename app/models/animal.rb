@@ -1,5 +1,6 @@
 class Animal < ApplicationRecord
   validates :nascimento, :cor, :tipo_pelo, :nome, :peso, :porte, :descricao, :status, presence: true
+  has_and_belongs_to_many :favorito
 
   enum status: {
     disponivel: 0,

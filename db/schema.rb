@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_145432) do
+ActiveRecord::Schema.define(version: 2021_06_06_212716) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 2021_06_06_145432) do
     t.integer "status"
   end
 
+  create_table "animals_favoritos", force: :cascade do |t|
+    t.integer "animal_id"
+    t.integer "favorito_id"
+    t.index ["animal_id"], name: "index_animals_favoritos_on_animal_id"
+    t.index ["favorito_id"], name: "index_animals_favoritos_on_favorito_id"
+  end
+
+  create_table "favoritos", force: :cascade do |t|
+    t.integer "animal_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["animal_id"], name: "index_favoritos_on_animal_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "animal_id", null: false
     t.integer "status"
@@ -52,5 +66,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_145432) do
     t.index ["animal_id"], name: "index_orders_on_animal_id"
   end
 
+  add_foreign_key "animals_favoritos", "animals"
+  add_foreign_key "animals_favoritos", "favoritos"
+  add_foreign_key "favoritos", "animals"
   add_foreign_key "orders", "animals"
 end

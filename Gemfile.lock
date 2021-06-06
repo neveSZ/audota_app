@@ -97,6 +97,8 @@ GEM
       responders
       warden (~> 1.2.3)
     e2mmap (0.1.0)
+    email_validator (2.2.3)
+      activemodel
     erubi (1.10.0)
     ffi (1.15.1)
     globalid (0.4.2)
@@ -236,6 +238,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     ssrf_filter (1.0.7)
+    telephone_number (1.4.11)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -244,6 +247,8 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
+    validates_cpf_cnpj (0.2.0)
+      activemodel (>= 3.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -277,6 +282,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   carrierwave (~> 2.0)
   devise
+  email_validator
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)
@@ -287,8 +293,10 @@ DEPENDENCIES
   solargraph
   spring
   sqlite3 (~> 1.4)
+  telephone_number
   turbolinks (~> 5)
   tzinfo-data
+  validates_cpf_cnpj
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)

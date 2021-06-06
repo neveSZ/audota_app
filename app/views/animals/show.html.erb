@@ -7,5 +7,8 @@
   <%= @animal.peso %>
   <%= @animal.porte %>
   <%= @animal.descricao %>
-  <%= @animal.status %>        
+  <%= @animal.status %>      
+  <% if @animal.disponivel? %>
+    <%= link_to 'Adotar', new_order_path(animal_id: @animal)%>
+  <% end %>  
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_023544) do
+ActiveRecord::Schema.define(version: 2021_06_06_145432) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -37,16 +37,20 @@ ActiveRecord::Schema.define(version: 2021_06_06_023544) do
     t.integer "status"
   end
 
-  create_table "usuarios", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
+    t.integer "animal_id", null: false
+    t.integer "status"
+    t.date "efetivacao_data"
     t.string "nome"
     t.string "cpf"
     t.string "email"
     t.string "endereco"
-    t.string "string"
     t.integer "idade"
     t.string "telefone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["animal_id"], name: "index_orders_on_animal_id"
   end
 
+  add_foreign_key "orders", "animals"
 end

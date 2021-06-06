@@ -3,8 +3,7 @@ class Animal < ApplicationRecord
 
   enum status: {
     disponivel: 0,
-    pendente: 100,
-    adotado: 200
+    indisponivel: 100
   }
 
   enum cor: {

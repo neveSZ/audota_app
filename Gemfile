@@ -6,12 +6,15 @@ ruby '3.0.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave', '~> 2.0'
 gem 'devise'
+gem 'email_validator'
 gem 'jbuilder', '~> 2.7'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'sass-rails', '>= 6'
 gem 'sqlite3', '~> 1.4'
+gem 'telephone_number'
 gem 'turbolinks', '~> 5'
+gem 'validates_cpf_cnpj'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do

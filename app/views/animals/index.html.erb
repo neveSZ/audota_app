@@ -4,5 +4,8 @@
     <% @animals.each do |animal| %>
         <%= link_to animal.nome, animal %>
         <%= animal.status %>        
+        <% if animal.disponivel? %>
+          <%= link_to 'Adotar', new_order_path(animal_id: animal)%>
+        <% end %>
     <% end %>
 <% end %>

@@ -1,0 +1,11 @@
+<% if @animal.present? %>
+  <h1><% @animal.nome %></h1>
+  
+  <%= @animal.idade %>
+  <%= @animal.cor %>
+  <%= @animal.tipo_pelo %>
+  <%= @animal.peso %>
+  <%= @animal.porte %>
+  <%= @animal.descricao %>
+  <%= @animal.status %>        
+<% end %>

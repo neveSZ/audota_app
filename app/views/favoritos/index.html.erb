@@ -1,5 +1,10 @@
 <h1> Animais </h1>
 
+<%= form_tag(favoritos_search_path, method: :get) do %> 
+  <%= search_field_tag :animal_search, params[:animal_search] %>  
+  <%= button_tag "Pesquisar" %>
+<% end %>
+
 <% if @animals.any? %>
     <% @animals.each do |animal| %>
         <%= link_to animal.nome, animal %>

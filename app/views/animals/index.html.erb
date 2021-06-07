@@ -1,8 +1,14 @@
 <h1> Animais </h1>
 
-<%= form_tag(animals_search_path, method: :get) do %> 
-  <%= search_field_tag :animal_search, params[:animal_search] %>  
-  <%= button_tag "Pesquisar" %>
+<%= form_tag(animals_path, method: :get) do %> 
+  <%= search_field_tag :search, params[:search] %>  
+  <%= button_tag 'Pesquisar' %>
+  
+  <%= select_tag :cor, options_for_select(Animal.cors.map {|key, value| [key.humanize.capitalize, value]}, params[:cor]), include_blank: true %>
+  <%= select_tag :tipo_pelo, options_for_select(Animal.tipo_pelos.map {|key, value| [key.humanize.capitalize, value]}, params[:tipo_pelo]), include_blank: true %>
+  <%= select_tag :tamanho_pelo, options_for_select(Animal.tamanho_pelos.map {|key, value| [key.humanize.capitalize, value]}, params[:tamanho_pelo]), include_blank: true %>
+  <%= select_tag :porte, options_for_select(Animal.portes.map {|key, value| [key.humanize.capitalize, value]}, params[:porte]), include_blank: true %>
+
 <% end %>
 
 <% if @animals.any? %>

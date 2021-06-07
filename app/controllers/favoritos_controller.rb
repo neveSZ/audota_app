@@ -1,8 +1,11 @@
 class FavoritosController < ApplicationController
-  skip_before_action :authenticate_admin!, only: %i[index create destroy search]
+  skip_before_action :authenticate_admin!, only: %i[index create destroy]
 
   def index
     @animals = favoritos_atuais.animal.where(status: :disponivel)
+    filter_params(params).each do |key, value|
+      @animals = @animals.public_send("filter_by_#{key}", value) if value.present?
+    end
   end
 
   def create
@@ -15,9 +18,7 @@ class FavoritosController < ApplicationController
     redirect_to favoritos_path
   end
 
-  def search
-    @animals = favoritos_atuais.animal.where(status: :disponivel).where('animals.nome LIKE :search  OR  animals.descricao LIKE :search',
-                                                                        search: "%#{params[:animal_search]}%")
-    render :index
+  def filter_params(params)
+    params.slice(:cor, :tipo_pelo, :tamanho_pelo, :porte, :idade_min, :idade_max, :search)
   end
 end

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Novo pedido de adoção do(a) <%= @order.animal.nome %> (Id: <%= @order.animal.id %>)!</h1>
+    <p>Segue os dados do(a) adotador(a): </p>
+    <p>Segue os <%= @order.nome %> </p>
+    <p>Segue os <%= @order.cpf %> </p>
+    <p>Segue os <%= @order.email %> </p>
+    <p>Segue os <%= @order.endereco %> </p>
+    <p>Segue os <%= @order.idade %> </p>
+    <p>Segue os <%= @order.telefone %> </p>
+  </body>
+</html>

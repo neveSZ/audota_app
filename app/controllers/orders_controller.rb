@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.status = :pendente
     if @order.save
+      AdminNotifierMailer.send_new_order_email(@order).deliver
       redirect_to animals_path, notice: 'Adoção reservada com sucesso! Vamos entrar em contato em breve'
     else
       @animal = @order.animal

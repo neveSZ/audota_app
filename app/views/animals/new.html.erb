@@ -1,0 +1,25 @@
+<% @animal.errors.full_messages.each do |message| %>
+  <%= message %>
+<% end %>
+
+<h1>Informações do Animal</h1>
+
+<%= form_with model: @animal, local: true do |f| %>
+  <%= f.label :nome %>
+  <%= f.text_field :nome %>
+  <%= f.label :peso %>
+  <%= f.number_field :peso %>
+  <%= f.label :descricao %>
+  <%= f.text_field :descricao %>
+  <%= f.label :nascimento %>
+  <%= f.date_field :nascimento %>
+  <%= f.label :cor %>
+  <%= f.select(:cor, Animal.cors.map{|key, value| [key.humanize.capitalize, value]}) %>
+  <%= f.label :tipo_pelo %>
+  <%= f.select(:tipo_pelo, Animal.tipo_pelos.map{|key, value| [key.humanize.capitalize, value]}) %>
+  <%= f.label :tamanho_pelo %>
+  <%= f.select(:tamanho_pelo, Animal.tamanho_pelos.map{|key, value| [key.humanize.capitalize, value]}) %>
+  <%= f.label :porte %>
+  <%= f.select(:porte, Animal.portes.map{|key, value| [key.humanize.capitalize, value]}) %>
+  <%= f.submit 'Concluir' %>
+<% end %>

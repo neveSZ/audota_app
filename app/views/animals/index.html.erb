@@ -1,5 +1,9 @@
 <h1> Animais </h1>
 
+<% if admin_signed_in? %>
+  <%= link_to 'Cadastrar novo animal', new_animal_path %>
+<% end %>
+
 <%= form_tag(animals_path, method: :get) do %> 
   <%= search_field_tag :search, params[:search] %>  
   <%= button_tag 'Pesquisar' %>
@@ -14,10 +18,14 @@
 <% if @animals.any? %>
   <% @animals.each do |animal| %>
     <%= link_to animal.nome, animal %>
-    <%= animal.status %>        
-    <% if animal.disponivel? %>
-      <%= link_to 'Adotar', new_order_path(animal_id: animal)%>
-      <%= link_to 'Favoritar', favoritos_path(animal_id: animal), method: :post %>
+    <%= animal.status %>
+    <% if admin_signed_in? %> 
+      <%= link_to 'Editar animal', edit_animal_path(animal) %>
+    <% else %>       
+      <% if animal.disponivel? %>
+        <%= link_to 'Adotar', new_order_path(animal_id: animal)%>
+        <%= link_to 'Favoritar', favoritos_path(animal_id: animal), method: :post %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

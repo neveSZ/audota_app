@@ -10,8 +10,8 @@
   <%= @order.efetivacao_data if @order.concluido? %>   
 
   <% if @order.pendente? %>
-    <%= link_to 'Cancelar', admin_cancelar_order_path(@order), method: :delete %>
-    <%= link_to 'Concluir', admin_concluir_order_path(@order), method: :post  %>
+    <%= link_to 'Cancelar', cancelar_order_path(@order), method: :delete %>
+    <%= link_to 'Concluir', concluir_order_path(@order), method: :post  %>
   <% end %>  
  <% end %> 
     

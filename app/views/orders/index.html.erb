@@ -2,7 +2,7 @@
 
 <% if @orders.any? %>
     <% @orders.each do |order| %>
-        <%= link_to order.animal.nome, admin_order_path(order) %>
+        <%= link_to order.animal.nome, order_path(order) %>
         <%= order.email %>
         <%= order.created_at %>
     <% end %>

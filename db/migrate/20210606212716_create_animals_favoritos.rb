@@ -1,4 +1,4 @@
-class AnimalsFavoritos < ActiveRecord::Migration[6.1]
+class CreateAnimalsFavoritos < ActiveRecord::Migration[6.1]
   def change
     create_table :animals_favoritos do |t|
       t.references :animal, foreign_key: true

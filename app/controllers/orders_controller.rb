@@ -17,6 +17,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def index
+    @orders = Order.all
+  end
+
+  def show
+    @order = Order.find(params[:id])
+  end
+
+  def cancelar
+    @order = Order.find(params[:id])
+    @order.set_cancelado
+    render :show
+  end
+
+  def concluir
+    @order = Order.find(params[:id])
+    @order.set_concluido
+    render :show
+  end
+
   private def order_params
     params.require(:order).permit(:nome, :cpf, :email, :endereco, :idade, :telefone, :animal_id)
   end

@@ -1,0 +1,17 @@
+<% if @order.present? %>
+  <h1><% "#{@order.animal.nome} - #{@order.email} - #{@order.created_at}" %></h1>
+  
+  <%= @order.status %>
+  <%= @order.cpf %>
+  <%= @order.telefone %>
+  <%= @order.endereco %>
+  <%= @order.idade %>
+  <%= @order.status %>
+  <%= @order.efetivacao_data if @order.concluido? %>   
+
+  <% if @order.pendente? %>
+    <%= link_to 'Cancelar', admin_cancelar_order_path(@order), method: :delete %>
+    <%= link_to 'Concluir', admin_concluir_order_path(@order), method: :post  %>
+  <% end %>  
+ <% end %> 
+    

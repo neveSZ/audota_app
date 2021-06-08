@@ -20,7 +20,6 @@ class Order < ApplicationRecord
   def set_cancelado
     animal.disponivel!
     cancelado!
-    save
   end
 
   def set_concluido

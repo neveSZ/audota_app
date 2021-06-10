@@ -1,5 +1,5 @@
 class AdminNotifierMailer < ApplicationMailer
-  default from: ENV['from_email']
+  default from: ENV['gmail_email']
 
   def send_new_order_email(order)
     @order = order

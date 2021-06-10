@@ -23,7 +23,11 @@
 
   <% if @animal.midias.attached? %>
     <% @animal.midias.each do |midia| %>
-      <%= image_tag midia %>
+      <% if midia.content_type.start_with? "video/" %>
+        <%= video_tag url_for(midia), controls: true %>
+      <% elsif midia.content_type.start_with? "image/" %>
+        <%= image_tag midia %>
+      <% end %>
     <% end %>
   <% end %>
 

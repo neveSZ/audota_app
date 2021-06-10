@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Animal < ApplicationRecord
   validates :nascimento, :cor, :tipo_pelo, :tamanho_pelo, :nome, :peso, :porte, :descricao, :status, presence: true
   validates :idade, numericality: { greater_than: 0, less_than_or_equal_to: 10_950 }

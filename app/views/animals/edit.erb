@@ -25,8 +25,11 @@
 
   <% if @animal.midias.attached? %>
     <% @animal.midias.each do |midia| %>
-      <%= image_tag midia %>
-      <%= link_to 'Remover', delete_midia_attachment_path(midia.id), method: :delete %>
+      <% if midia.content_type.start_with? "video/" %>
+        <%= video_tag url_for(midia), controls: true %>
+      <% elsif midia.content_type.start_with? "image/" %>
+        <%= image_tag midia %>
+      <% end %>
     <% end %>
   <% end %>
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdminNotifierMailer < ApplicationMailer
   default from: ENV['gmail_email']
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   skip_before_action :authenticate_admin!, only: %i[new create]
   def new

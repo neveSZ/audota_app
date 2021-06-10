@@ -1,6 +1,8 @@
 class Animal < ApplicationRecord
   validates :nascimento, :cor, :tipo_pelo, :tamanho_pelo, :nome, :peso, :porte, :descricao, :status, presence: true
+  validates :idade, numericality: { greater_than: 0, less_than_or_equal_to: 10_950 }
   has_and_belongs_to_many :favorito
+  has_many_attached :midias
   scope :filter_by_cor, ->(cor) { where cor: cor }
   scope :filter_by_tipo_pelo, ->(tipo_pelo) { where tipo_pelo: tipo_pelo }
   scope :filter_by_tamanho_pelo, ->(tamanho_pelo) { where tamanho_pelo: tamanho_pelo }
@@ -47,5 +49,11 @@ class Animal < ApplicationRecord
   def idade
     # Retorna idade em dias
     (Date.today - nascimento).to_i
+  end
+
+  def attach_midias(midias)
+    midias.each do |midia|
+      self.midias.attach(midia)
+    end
   end
 end

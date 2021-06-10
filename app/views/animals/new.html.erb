@@ -21,5 +21,7 @@
   <%= f.select(:tamanho_pelo, Animal.tamanho_pelos.map{|key, value| [key.humanize.capitalize, value]}) %>
   <%= f.label :porte %>
   <%= f.select(:porte, Animal.portes.map{|key, value| [key.humanize.capitalize, value]}) %>
+  <%= f.label :midia %>
+  <%= f.file_field :midias, multiple: true %>  
   <%= f.submit 'Concluir' %>
 <% end %>

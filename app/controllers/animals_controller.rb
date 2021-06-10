@@ -20,6 +20,8 @@ class AnimalsController < ApplicationController
   def create
     @animal = Animal.new(animal_params)
     @animal.status = 'disponivel'
+    @animal.attach_midias(params[:animal][:midias]) if params[:animal][:midias].present?
+
     if @animal.save
       redirect_to @animal, notice: 'Animal cadastrado com sucesso'
     else
@@ -33,6 +35,8 @@ class AnimalsController < ApplicationController
 
   def update
     @animal = Animal.find(params[:id])
+    @animal.attach_midias(params[:animal][:midias]) if params[:animal][:midias].present?
+
     if @animal.update(animal_params)
       redirect_to @animal
     else
@@ -42,6 +46,12 @@ class AnimalsController < ApplicationController
 
   def filter_params(params)
     params.slice(:cor, :tipo_pelo, :tamanho_pelo, :porte, :idade_min, :idade_max, :search)
+  end
+
+  def delete_midia_attachment
+    midia = ActiveStorage::Attachment.find(params[:id])
+    midia.purge
+    redirect_back(fallback_location: root_path)
   end
 
   private def animal_params

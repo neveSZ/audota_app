@@ -21,5 +21,15 @@
   <%= f.select(:tamanho_pelo, Animal.tamanho_pelos.map{|key, value| [key.humanize.capitalize, value]}) %>
   <%= f.label :porte %>
   <%= f.select(:porte, Animal.portes.map{|key, value| [key.humanize.capitalize, value]}) %>
+  <%= f.label :midia %>
+
+  <% if @animal.midias.attached? %>
+    <% @animal.midias.each do |midia| %>
+      <%= image_tag midia %>
+      <%= link_to 'Remover', delete_midia_attachment_path(midia.id), method: :delete %>
+    <% end %>
+  <% end %>
+
+  <%= f.file_field :midias, multiple: true %>  
   <%= f.submit 'Concluir' %>
 <% end %>

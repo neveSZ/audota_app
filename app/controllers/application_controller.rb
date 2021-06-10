@@ -3,11 +3,16 @@ class ApplicationController < ActionController::Base
 
   def favoritos_atuais
     if session[:favoritos_id]
-      @favoritos = Favorito.find(session[:favoritos_id])
+      begin
+        favoritos = Favorito.find(session[:favoritos_id])
+      rescue ActiveRecord::RecordNotFound => e
+        favoritos = Favorito.create
+        session[:favoritos_id] = favoritos.id
+      end
     else
-      @favoritos = Favorito.create
-      session[:favoritos_id] = @favoritos.id
+      favoritos = Favorito.create
+      session[:favoritos_id] = favoritos.id
     end
-    @favoritos
+    favoritos
   end
 end

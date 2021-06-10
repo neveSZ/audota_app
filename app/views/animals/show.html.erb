@@ -20,4 +20,11 @@
       <% end %>
     <% end %>  
   <% end %>  
+
+  <% if @animal.midias.attached? %>
+    <% @animal.midias.each do |midia| %>
+      <%= image_tag midia %>
+    <% end %>
+  <% end %>
+
 <% end %>

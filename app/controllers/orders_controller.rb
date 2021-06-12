@@ -12,15 +12,13 @@ class OrdersController < ApplicationController
 
     if @order.animal.indisponivel?
       redirect_to animals_path, notice: 'Desculpe, mas este animal não está disponivel'
-    else
+    elsif @order.save
       @order.set_pendente
-      if @order.save
-        AdminNotifierMailer.send_new_order_email(@order).deliver
-        redirect_to animals_path, notice: 'Adoção reservada com sucesso! Vamos entrar em contato em breve'
-      else
-        @animal = @order.animal
-        render :new, animal_id: @animal.id
-      end
+      AdminNotifierMailer.send_new_order_email(@order).deliver
+      redirect_to animals_path, notice: 'Adoção reservada com sucesso! Vamos entrar em contato em breve'
+    else
+      @animal = @order.animal
+      render :new, animal_id: @animal.id
     end
   end
 

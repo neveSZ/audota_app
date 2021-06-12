@@ -2,7 +2,7 @@
 
 class Order < ApplicationRecord
   belongs_to :animal
-  validates :name, :cpf, :email, :address, :age, :telephone, :animal, :status, presence: true
+  validates :name, :cpf, :email, :address, :age, :telephone, :animal, presence: true
   validates :cpf, cpf: true
   validates :email, email: { mode: :strict, require_fqdn: true }
   validates :telephone, telephone_number: { country: :br, types: %i[fixed_line mobile] }
@@ -17,7 +17,7 @@ class Order < ApplicationRecord
   def set_pendente
     if animal.disponivel?
       animal.indisponivel!
-      self.status = 'pendente'
+      pendente!
     end
   end
 

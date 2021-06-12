@@ -11,7 +11,7 @@
 
   <% if @order.pendente? %>
     <%= link_to 'Cancelar', cancel_order_path(@order), method: :delete %>
-    <%= link_to 'Concluir', conclude_order_path(@order), method: :post  %>
+    <%= link_to 'Concluir', order_url(id: @order), method: :post  %>
   <% end %>  
  <% end %> 
     

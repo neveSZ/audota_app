@@ -27,7 +27,6 @@
         <%= video_tag url_for(media), controls: true %>
       <% elsif media.content_type.start_with? "image/" %>
         <%= image_tag media %>
-      <%= link_to 'Remover', delete_media_attachment_path(media.id), method: :delete %>
       <% end %>
     <% end %>
   <% end %>

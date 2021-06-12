@@ -16,3 +16,5 @@ pt-BR:
         favorite_id: Favorito
         age: Idade
         birthday: Data de Nascimento
+        age_min: Idade minima
+        age_max: Idade maxima

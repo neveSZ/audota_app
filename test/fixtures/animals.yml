@@ -1,19 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nascimento: 2021-06-05
-  cor: 1
-  tipo_pelo: 1
-  nome: MyString
-  peso: 1
-  porte: 1
-  descricao: MyText
+  birthday: 2021-06-05
+  color: 1
+  fur_type: 1
+  name: MyString
+  weight: 1
+  size: 1
+  description: MyText
 
 two:
-  nascimento: 2021-06-05
-  cor: 1
-  tipo_pelo: 1
-  nome: MyString
-  peso: 1
-  porte: 1
-  descricao: MyText
+  birthday: 2021-06-05
+  color: 1
+  fur_type: 1
+  name: MyString
+  weight: 1
+  size: 1
+  description: MyText

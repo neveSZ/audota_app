@@ -2,12 +2,11 @@
 
 class Order < ApplicationRecord
   belongs_to :animal
-  after_create :set_pendente
-  validates :nome, :cpf, :email, :endereco, :idade, :telefone, :animal, :status, presence: true
+  validates :name, :cpf, :email, :address, :age, :telephone, :animal, :status, presence: true
   validates :cpf, cpf: true
   validates :email, email: { mode: :strict, require_fqdn: true }
-  validates :telefone, telephone_number: { country: :br, types: %i[fixed_line mobile] }
-  validates :idade, numericality: { greater_than_or_equal_to: 18, less_than_or_equal_to: 100 }
+  validates :telephone, telephone_number: { country: :br, types: %i[fixed_line mobile] }
+  validates :age, numericality: { greater_than_or_equal_to: 18, less_than_or_equal_to: 100 }
 
   enum status: {
     pendente: 0,
@@ -32,7 +31,7 @@ class Order < ApplicationRecord
   def set_concluido
     if pendente?
       concluido!
-      self.efetivacao_data = Date.today
+      self.conclusion_date = Date.today
       save
     end
   end

@@ -4,7 +4,7 @@ class AnimalsController < ApplicationController
   skip_before_action :authenticate_admin!, only: %i[index show]
 
   def index
-    @animals = Animal.where(status: :disponivel).where.not(id: favoritos_atuais.animal.ids)
+    @animals = Animal.where(status: :disponivel).where.not(id: current_favorites.animal.ids)
     filter_params(params).each do |key, value|
       @animals = @animals.public_send("filter_by_#{key}", value) if value.present?
     end
@@ -12,7 +12,7 @@ class AnimalsController < ApplicationController
 
   def show
     @animal = Animal.find(params[:id])
-    @favoritos_atuais = favoritos_atuais
+    @current_favorites = current_favorites
   end
 
   def new
@@ -22,7 +22,7 @@ class AnimalsController < ApplicationController
   def create
     @animal = Animal.new(animal_params)
     @animal.status = 'disponivel'
-    @animal.attach_midias(params[:animal][:midias]) if params[:animal][:midias].present?
+    @animal.attach_medias(params[:animal][:medias]) if params[:animal][:medias].present?
 
     if @animal.save
       redirect_to @animal, notice: 'Animal cadastrado com sucesso'
@@ -37,7 +37,7 @@ class AnimalsController < ApplicationController
 
   def update
     @animal = Animal.find(params[:id])
-    @animal.attach_midias(params[:animal][:midias]) if params[:animal][:midias].present?
+    @animal.attach_medias(params[:animal][:medias]) if params[:animal][:medias].present?
 
     if @animal.update(animal_params)
       redirect_to @animal
@@ -47,22 +47,22 @@ class AnimalsController < ApplicationController
   end
 
   def filter_params(params)
-    params.slice(:cor, :tipo_pelo, :tamanho_pelo, :porte, :idade_min, :idade_max, :search)
+    params.slice(:color, :fur_type, :fur_size, :size, :age_min, :age_max, :search)
   end
 
-  def delete_midia_attachment
-    midia = ActiveStorage::Attachment.find(params[:id])
-    midia.purge
+  def delete_media_attachment
+    media = ActiveStorage::Attachment.find(params[:id])
+    media.purge
     redirect_back(fallback_location: root_path)
   end
 
   private def animal_params
-    animal_params = params.require(:animal).permit(:nome, :peso, :descricao, :nascimento, :cor, :tipo_pelo, :tamanho_pelo,
-                                                   :porte)
-    animal_params[:cor] = animal_params[:cor].to_i
-    animal_params[:tipo_pelo] = animal_params[:tipo_pelo].to_i
-    animal_params[:tamanho_pelo] = animal_params[:tamanho_pelo].to_i
-    animal_params[:porte] = animal_params[:porte].to_i
+    animal_params = params.require(:animal).permit(:name, :weight, :description, :birthday, :color, :fur_type, :fur_size,
+                                                   :size)
+    animal_params[:color] = animal_params[:color].to_i
+    animal_params[:fur_type] = animal_params[:fur_type].to_i
+    animal_params[:fur_size] = animal_params[:fur_size].to_i
+    animal_params[:size] = animal_params[:size].to_i
     animal_params
   end
 end

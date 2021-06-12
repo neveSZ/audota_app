@@ -1,17 +1,17 @@
 <% if @order.present? %>
-  <h1><% "#{@order.animal.nome} - #{@order.email} - #{@order.created_at}" %></h1>
+  <h1><% "#{@order.animal.name} - #{@order.email} - #{@order.created_at}" %></h1>
   
   <%= @order.status %>
   <%= @order.cpf %>
-  <%= @order.telefone %>
-  <%= @order.endereco %>
-  <%= @order.idade %>
+  <%= @order.telephone %>
+  <%= @order.address %>
+  <%= @order.age %>
   <%= @order.status %>
-  <%= @order.efetivacao_data if @order.concluido? %>   
+  <%= @order.conclusion_date if @order.concluido? %>   
 
   <% if @order.pendente? %>
-    <%= link_to 'Cancelar', cancelar_order_path(@order), method: :delete %>
-    <%= link_to 'Concluir', concluir_order_path(@order), method: :post  %>
+    <%= link_to 'Cancelar', cancel_order_path(@order), method: :delete %>
+    <%= link_to 'Concluir', conclude_order_path(@order), method: :post  %>
   <% end %>  
  <% end %> 
     

@@ -1,0 +1,18 @@
+pt-BR:
+  activerecord:
+    models:
+      animal: Animal
+    attributes:
+      animal:
+        color: Cor
+        fur_type: Tipo de pelo
+        name: Nome
+        weight: Peso
+        size: Porte
+        description: Descrição
+        status: Status
+        fur_size: Tamanho do pelo
+        favorite: Favorito
+        favorite_id: Favorito
+        age: Idade
+        birthday: Data de Nascimento

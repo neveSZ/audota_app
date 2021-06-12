@@ -9,15 +9,16 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.set_pendente
-    if @order.save
-      AdminNotifierMailer.send_new_order_email(@order).deliver
-      redirect_to animals_path, notice: 'Adoção reservada com sucesso! Vamos entrar em contato em breve'
+
+    if @order.animal.indisponivel?
+      redirect_to animals_path, notice: 'Desculpe, mas este animal não está disponivel'
     else
-      @animal = @order.animal
-      if @animal.indisponivel?
-        redirect_to animals_path, notice: 'Animal indisponivel'
+      @order.set_pendente
+      if @order.save
+        AdminNotifierMailer.send_new_order_email(@order).deliver
+        redirect_to animals_path, notice: 'Adoção reservada com sucesso! Vamos entrar em contato em breve'
       else
+        @animal = @order.animal
         render :new, animal_id: @animal.id
       end
     end
@@ -31,19 +32,19 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def cancelar
+  def cancel
     @order = Order.find(params[:id])
     @order.set_cancelado
     render :show
   end
 
-  def concluir
+  def conclude
     @order = Order.find(params[:id])
     @order.set_concluido
     render :show
   end
 
   private def order_params
-    params.require(:order).permit(:nome, :cpf, :email, :endereco, :idade, :telefone, :animal_id)
+    params.require(:order).permit(:name, :cpf, :email, :address, :age, :telephone, :animal_id)
   end
 end

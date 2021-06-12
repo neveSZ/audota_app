@@ -3,16 +3,15 @@
 one:
   animal: one
   status: 1
-  efetivacao_data: 2021-06-06
-  nome: MyString
+  conclusion_date: 2021-06-06
+  name: MyString
   cpf: MyString
   email: MyString
-  endereco: MyString
-  string: MyString
-  idade: 1
-  telefone: MyString
+  address: MyString
+  age: 1
+  telephone: MyString
 
 two:
   animal: two
   status: 1
-  efetivacao_data: 2021-06-06
+  conclusion_date: 2021-06-06

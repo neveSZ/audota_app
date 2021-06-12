@@ -6,6 +6,6 @@ class AdminNotifierMailer < ApplicationMailer
   def send_new_order_email(order)
     @order = order
     mail(to: ENV['to_email'],
-         subject: "Novo pedido de adoção do(a) #{order.animal.nome}")
+         subject: "Novo pedido de adoção do(a) #{order.animal.name}")
   end
 end

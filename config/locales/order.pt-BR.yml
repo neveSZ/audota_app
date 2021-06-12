@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      order: Favorito
+    attributes:
+      order:
+        animal: Animal
+        animal_id: Animal
+        name: Nome
+        cpf: CPF
+        email: E-mail
+        address: Endereço
+        age: Idade
+        telephone: Telefone
+        status: Status
+        conclusion_date: Data de efetivação
+        created_at: Data de realização

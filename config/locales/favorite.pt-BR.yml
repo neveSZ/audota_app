@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      favorite: Favorito
+    attributes:
+      favorite:
+        animal: Animal
+        animal_id: Animal

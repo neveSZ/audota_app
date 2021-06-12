@@ -1,24 +1,26 @@
 # frozen_string_literal: true
 
 class Animal < ApplicationRecord
-  validates :nascimento, :cor, :tipo_pelo, :tamanho_pelo, :nome, :peso, :porte, :descricao, :status, presence: true
-  validates :idade, numericality: { greater_than: 0, less_than_or_equal_to: 10_950 }
-  has_and_belongs_to_many :favorito
-  has_many_attached :midias
-  scope :filter_by_cor, ->(cor) { where cor: cor }
-  scope :filter_by_tipo_pelo, ->(tipo_pelo) { where tipo_pelo: tipo_pelo }
-  scope :filter_by_tamanho_pelo, ->(tamanho_pelo) { where tamanho_pelo: tamanho_pelo }
-  scope :filter_by_porte, ->(porte) { where porte: porte }
-  scope :filter_by_idade_min, ->(idade_min) { where('nascimento <= ?', Date.today - idade_min.to_i.day) }
-  scope :filter_by_idade_max, ->(idade_max) { where('nascimento >= ?', Date.today - idade_max.to_i.day) }
-  scope :filter_by_search, ->(search) { where('nome LIKE :search  OR  descricao LIKE :search', search: "%#{search}%") }
+  validates :birthday, :color, :fur_type, :fur_size, :name, :weight, :size, :description, :status, presence: true
+  validates :age, numericality: { greater_than: 0, less_than_or_equal_to: 10_950 }
+  has_and_belongs_to_many :favorite
+  has_many_attached :medias
+  scope :filter_by_cor, ->(cor) { where color: cor }
+  scope :filter_by_fur_type, ->(fur_type) { where fur_type: fur_type }
+  scope :filter_by_fur_size, ->(fur_size) { where fur_size: fur_size }
+  scope :filter_by_size, ->(size) { where size: size }
+  scope :filter_by_age_min, ->(age_min) { where('birthday <= ?', Date.today - age_min.to_i.day) }
+  scope :filter_by_age_max, ->(age_max) { where('birthday >= ?', Date.today - age_max.to_i.day) }
+  scope :filter_by_search, lambda { |search|
+                             where('name LIKE :search  OR  description LIKE :search', search: "%#{search}%")
+                           }
 
   enum status: {
     disponivel: 0,
     indisponivel: 100
   }
 
-  enum cor: {
+  enum color: {
     amarelo: 0,
     marrom: 1,
     branco: 2,
@@ -31,31 +33,30 @@ class Animal < ApplicationRecord
     bege: 9
   }
 
-  enum tipo_pelo: {
+  enum fur_type: {
     macio: 0,
     ondulado: 1,
     cerdoso: 2
   }
 
-  enum tamanho_pelo: {
+  enum fur_size: {
     curto: 0,
     comprido: 1
   }
 
-  enum porte: {
+  enum size: {
     pequeno: 0,
     medio: 1,
     grande: 2
   }
 
-  def idade
-    # Retorna idade em dias
-    (Date.today - nascimento).to_i
+  def age
+    (Date.today - birthday).to_i
   end
 
-  def attach_midias(midias)
-    midias.each do |midia|
-      self.midias.attach(midia)
+  def attach_medias(medias)
+    medias.each do |media|
+      self.medias.attach(media)
     end
   end
 end

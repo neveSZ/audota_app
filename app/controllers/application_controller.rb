@@ -3,18 +3,18 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_admin!
 
-  def favoritos_atuais
-    if session[:favoritos_id]
+  def current_favorites
+    if session[:favorites_id]
       begin
-        favoritos = Favorito.find(session[:favoritos_id])
+        favorites = Favorite.find(session[:favorites_id])
       rescue ActiveRecord::RecordNotFound => e
-        favoritos = Favorito.create
-        session[:favoritos_id] = favoritos.id
+        favorites = Favorite.create
+        session[:favorites_id] = favorites.id
       end
     else
-      favoritos = Favorito.create
-      session[:favoritos_id] = favoritos.id
+      favorites = Favorite.create
+      session[:favorites_id] = favorites.id
     end
-    favoritos
+    favorites
   end
 end

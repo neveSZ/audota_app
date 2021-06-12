@@ -1,32 +1,33 @@
 <% if @animal.present? %>
-  <h1><% @animal.nome %></h1>
+  <h1><% @animal.name %></h1>
   
-  <%= @animal.idade %>
-  <%= @animal.cor %>
-  <%= @animal.tipo_pelo %>
-  <%= @animal.peso %>
-  <%= @animal.porte %>
-  <%= @animal.descricao %>
+  <%= @animal.age %>
+  <%= @animal.color %>
+  <%= @animal.fur_type %>
+  <%= @animal.weight %>
+  <%= @animal.size %>
+  <%= @animal.description %>
   <%= @animal.status %>      
   <% if admin_signed_in? %> 
     <%= link_to 'Editar animal', edit_animal_path(@animal) %>
   <% else %>
     <% if @animal.disponivel? %>
       <%= link_to 'Adotar', new_order_path(animal_id: @animal)%>
-      <% if @favoritos_atuais.animal.ids.include?(@animal.id) %>
-        <%= link_to 'Desfavoritar', favoritos_path(animal_id: @animal), method: :delete %>
+      <% if @current_favorites.animal.ids.include?(@animal.id) %>
+        <%= link_to 'Desfavoritar', favorites_path(animal_id: @animal), method: :delete %>
       <% else %>
-        <%= link_to 'Favoritar', favoritos_path(animal_id: @animal), method: :post %>
+        <%= link_to 'Favoritar', favorites_path(animal_id: @animal), method: :post %>
       <% end %>
     <% end %>  
   <% end %>  
 
-  <% if @animal.midias.attached? %>
-    <% @animal.midias.each do |midia| %>
-      <% if midia.content_type.start_with? "video/" %>
-        <%= video_tag url_for(midia), controls: true %>
-      <% elsif midia.content_type.start_with? "image/" %>
-        <%= image_tag midia %>
+  <% if @animal.medias.attached? %>
+    <% @animal.medias.each do |media| %>
+      <% if media.content_type.start_with? "video/" %>
+        <%= video_tag url_for(media), controls: true %>
+      <% elsif media.content_type.start_with? "image/" %>
+        <%= image_tag media %>
+      <%= link_to 'Remover', delete_media_attachment_path(media.id), method: :delete %>
       <% end %>
     <% end %>
   <% end %>

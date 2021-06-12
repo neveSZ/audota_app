@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateFavoritos < ActiveRecord::Migration[6.1]
+class CreateFavorites < ActiveRecord::Migration[6.1]
   def change
-    create_table :favoritos do |t|
+    create_table :favorites do |t|
       t.references :animal, foreign_key: true
 
       t.timestamps

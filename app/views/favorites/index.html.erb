@@ -1,11 +1,7 @@
 <h1> Animais </h1>
 
-<% if admin_signed_in? %>
-  <%= link_to 'Cadastrar novo animal', new_animal_path %>
-<% end %>
-
-<%= form_tag(animals_path, method: :get) do %> 
-  <%= search_field_tag :search, params[:search] %>    
+<%= form_tag(favorites_path, method: :get) do %> 
+  <%= search_field_tag :search, params[:search] %>  
   <%= select_tag :color, options_for_select(Animal.colors.map {|key, value| [key.humanize.capitalize, value]}, params[:color]), include_blank: true %>
   <%= select_tag :fur_type, options_for_select(Animal.fur_types.map {|key, value| [key.humanize.capitalize, value]}, params[:fur_type]), include_blank: true %>
   <%= select_tag :fur_size, options_for_select(Animal.fur_sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:fur_size]), include_blank: true %>
@@ -18,16 +14,12 @@
 <% end %>
 
 <% if @animals.any? %>
-  <% @animals.each do |animal| %>
-    <%= link_to animal.name, animal %>
-    <%= animal.status %>
-    <% if admin_signed_in? %> 
-      <%= link_to 'Editar animal', edit_animal_path(animal) %>
-    <% else %>       
-      <% if animal.disponivel? %>
-        <%= link_to 'Adotar', new_order_path(animal_id: animal)%>
-        <%= link_to 'Favoritar', favorites_path(animal_id: animal), method: :post %>
-      <% end %>
+    <% @animals.each do |animal| %>
+        <%= link_to animal.name, animal %>
+        <%= animal.status %>        
+        <% if animal.disponivel? && !admin_signed_in? %>
+          <%= link_to 'Adotar', new_order_path(animal_id: animal)%>
+          <%= link_to 'Desfavoritar', favorites_path(animal_id: animal), method: :delete %>
+        <% end %>
     <% end %>
-  <% end %>
 <% end %>

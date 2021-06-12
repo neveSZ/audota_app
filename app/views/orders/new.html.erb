@@ -5,18 +5,18 @@
 <h1>Informações para adoção</h1>
 
 <%= form_with model: @order, local: true do |f| %>
-  <%= f.label :nome %>
-  <%= f.text_field :nome %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
   <%= f.label :cpf %>
   <%= f.text_field :cpf %>
   <%= f.label :email %>
   <%= f.text_field :email %>
-  <%= f.label :endereco %>
-  <%= f.text_field :endereco %>
-  <%= f.label :idade %>
-  <%= f.number_field :idade %>
-  <%= f.label :telefone %>
-  <%= f.text_field :telefone %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.label :age %>
+  <%= f.number_field :age %>
+  <%= f.label :telephone %>
+  <%= f.text_field :telephone %>
   <%= f.submit 'Concluir' %>
   <%= f.hidden_field :animal_id, value: @animal.id %>
 <% end %>

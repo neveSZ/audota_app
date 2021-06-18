@@ -1,5 +1,10 @@
 <%= stylesheet_link_tag 'new_animal_page.css' %>
 
+<% @animal.errors.full_messages.each do |message| %>
+  <%= message %>
+<% end %>
+
+
 <body>
   <div class='container'>
     <h1 class="title">Novo Pet</h1>

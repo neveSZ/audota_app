@@ -23,5 +23,6 @@ module AudotaApp
     config.i18n.default_locale = :"pt-BR"
     config.time_zone = 'Brasilia'
     config.active_record.default_timezone = :local
+    config.action_view.automatically_disable_submit_tag = false
   end
 end

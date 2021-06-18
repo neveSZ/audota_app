@@ -1,34 +1,68 @@
-<% if @animal.present? %>
-  <h1><% @animal.name %></h1>
-  
-  <%= @animal.age %>
-  <%= @animal.color %>
-  <%= @animal.fur_type %>
-  <%= @animal.weight %>
-  <%= @animal.size %>
-  <%= @animal.description %>
-  <%= @animal.status %>      
-  <% if admin_signed_in? %> 
-    <%= link_to 'Editar animal', edit_animal_path(@animal) %>
-  <% else %>
-    <% if @animal.disponivel? %>
-      <%= link_to 'Adotar', new_order_path(animal_id: @animal)%>
-      <% if @current_favorites.animal.ids.include?(@animal.id) %>
-        <%= link_to 'Desfavoritar', favorites_path(animal_id: @animal), method: :delete %>
-      <% else %>
-        <%= link_to 'Favoritar', favorites_path(animal_id: @animal), method: :post %>
-      <% end %>
-    <% end %>  
-  <% end %>  
+<%= stylesheet_link_tag 'show_animal_page.css' %>
+
+<div class='container'>
+  <h1 class='title'>    
+    <% if @animal.present? %>
+      <%= @animal.name %>
+  </h1>
 
   <% if @animal.medias.attached? %>
-    <% @animal.medias.each do |media| %>
-      <% if media.content_type.start_with? "video/" %>
-        <%= video_tag url_for(media), controls: true %>
-      <% elsif media.content_type.start_with? "image/" %>
-        <%= image_tag media %>
+      <% @animal.medias.each do |media| %>
+        <% if media.content_type.start_with? "video/" %>
+          <%= video_tag url_for(media), controls: true %>
+        <% elsif media.content_type.start_with? "image/" %>
+          <%= image_tag media, :class => 'picture'%>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+    
+    <br>
 
-<% end %>
+    <br>
+    <div class='container_left'>
+      <label class='item'>Descrição:</label>
+      <%= @animal.description %>
+      <br>
+
+      <label class='item'>Idade:</label>
+      <%= @animal.age %>
+      <br>
+
+      <label class='item'>Peso:</label>
+      <%= @animal.weight %>
+      <br>
+      
+      <label class='item'>Porte:</label>
+      <%= @animal.size %>
+      <br>
+
+      <label class='item'>Pêlo:</label>
+      <%= @animal.fur_type %>
+      <br>
+
+      <label class='item'>Cor:</label>
+      <%= @animal.color %>
+      <br>
+
+      <label class='item'>Situação:</label>
+      <%= @animal.status %>      
+      <br>
+    <div>
+    <br>
+    
+    <div class='center_container'>
+    <% if admin_signed_in? %> 
+      <%= link_to 'Editar animal', edit_animal_path(@animal), :class => 'default_button' %>
+    <% else %>
+      <% if @animal.disponivel? %>
+        <%= link_to 'Adotar', new_order_path(animal_id: @animal), :class => 'default_button'%>
+        <% if @current_favorites.animal.ids.include?(@animal.id) %>
+          <%= link_to 'Desfavoritar', favorites_path(animal_id: @animal), method: :delete, :class => 'default_button' %>
+        <% else %>
+          <%= link_to 'Favoritar', favorites_path(animal_id: @animal), method: :post, :class => 'default_button' %>
+        <% end %>
+      <% end %>  
+    <% end %>  
+    <% end %>
+    </div>
+</div>

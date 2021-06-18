@@ -13,14 +13,26 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if admin_signed_in? %>
-      <%= link_to "Sair", destroy_admin_session_path, method: :delete  %>
-      <%= link_to "Lista de pedidos", orders_path  %>
-    <% else %>
-      <%= link_to "Adminstrador", admin_session_path  %>
-      <%= link_to "Lista de favoritos", favorites_path %>
-    <% end %>
-    <%= link_to "Lista de animais", animals_path %>
+    
+    <header>
+      <nav>
+        <%= link_to image_tag("icon_pet.png", class: 'icon'), animals_path %>
+        
+        <% if admin_signed_in? %>
+          <%= link_to image_tag("icon_add.png", class: 'icon'), new_animal_path %>
+          <%= link_to image_tag("icon_order.png", class: 'icon'), orders_path  %>  
+          <%= link_to image_tag("icon_exit.png", class: 'icon'), destroy_admin_session_path, method: :delete  %>
+        <% else %>
+          <%= link_to image_tag("icon_star.png", class: 'icon'), favorites_path %>
+          <%= link_to image_tag("icon_admin.png", class: 'icon'), admin_session_path  %>
+        <% end %>
+      </nav>
+      <div class="flex_container">
+        <%= image_tag "audota_logo.png", class:"logo" %>
+        <h1 class="logo_name">Audota App</h1>    
+        <%= image_tag "audota_logo_inverted.png", class:"logo" %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

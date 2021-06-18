@@ -1,33 +1,42 @@
-<h1> Animais </h1>
+<%= stylesheet_link_tag 'index_animal_page.css' %>
 
-<% if admin_signed_in? %>
-  <%= link_to 'Cadastrar novo animal', new_animal_path %>
-<% end %>
+<div class='flex_container'>
+  <%= form_tag(animals_path, method: :get) do %> 
+    <label class='text'>Pesquisar</label>
+    <%= search_field_tag :search, params[:search], :class => 'filter_input' %>
+    <%= select_tag :size, options_for_select(Animal.sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:size]), include_blank: true, :class => 'filter_input' %>
+    <%= select_tag :color, options_for_select(Animal.colors.map {|key, value| [key.humanize.capitalize, value]}, params[:color]), include_blank: true, :class => 'filter_input' %>
+    <%= select_tag :fur_size, options_for_select(Animal.fur_sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:fur_size]), include_blank: true, :class => 'filter_input' %>
+    <%= button_tag "Buscar", :class => 'search_button' %> 
+  <% end %>
+</div>
+<div class='flex_container123'>
 
-<%= form_tag(animals_path, method: :get) do %> 
-  <%= search_field_tag :search, params[:search] %>    
-  <%= select_tag :color, options_for_select(Animal.colors.map {|key, value| [key.humanize.capitalize, value]}, params[:color]), include_blank: true %>
-  <%= select_tag :fur_type, options_for_select(Animal.fur_types.map {|key, value| [key.humanize.capitalize, value]}, params[:fur_type]), include_blank: true %>
-  <%= select_tag :fur_size, options_for_select(Animal.fur_sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:fur_size]), include_blank: true %>
-  <%= select_tag :size, options_for_select(Animal.sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:size]), include_blank: true %>
-  <%= label_tag :age_max %>
-  <%= text_field_tag :age_max, params[:age_max] %>
-  <%= label_tag :age_min %>
-  <%= text_field_tag :age_min, params[:age_min] %>
-  <%= button_tag "Filtrar" %> 
-<% end %>
-
+<div class='flex_container'>
 <% if @animals.any? %>
   <% @animals.each do |animal| %>
-    <%= link_to animal.name, animal %>
-    <%= animal.status %>
-    <% if admin_signed_in? %> 
-      <%= link_to 'Editar animal', edit_animal_path(animal) %>
-    <% else %>       
-      <% if animal.disponivel? %>
-        <%= link_to 'Adotar', new_order_path(animal_id: animal)%>
-        <%= link_to 'Favoritar', favorites_path(animal_id: animal), method: :post %>
+    <div class='pet_container'>
+      <%= link_to animal.name, animal, :class => 'titulo' %>
+      <% if animal.medias.attached? %>
+        <% if animal.medias.first.content_type.start_with? "video/" %>
+          <%= video_tag url_for(animal.medias.first), controls: true %>
+        <% elsif animal.medias.first.content_type.start_with? "image/" %>
+          <%= image_tag animal.medias.first, :class => 'picture' %>
+        <% end %>
+      <% end %>
+      <br>
+      <% if admin_signed_in? %> 
+        <%= link_to 'Editar pet', edit_animal_path(animal), :class => 'default_button1' %>
+      <% else %>       
+        <% if animal.disponivel? %>
+          <div class='button_container'>
+            <%= link_to image_tag("icon_favorite.png", class: 'icon1'), favorites_path(animal_id: animal), method: :post %>
+            <%= link_to image_tag("icon_adopt.png", class: 'icon1'), new_order_path(animal_id: animal) %>
+          </div>
       <% end %>
     <% end %>
-  <% end %>
+    </div>
+ <% end %>
 <% end %>
+</div>
+</div>

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+
+.default_button{
+  height: 5vh;
+  width: 13vw;
+  cursor: pointer;
+  border: none;
+  background-color: #ffe782;
+  opacity: 0.75;
+  font-size: 1rem;
+}
+
+.default_button:hover{
+  background-color: #ffb469;
+  opacity: 1;
+}
+
+.default_input{
+  margin: 5px;
+  padding: 5px;
+  width: 16vw;
+}
+
+.login {
+  height: 45vh;
+  margin: 2% 30%;
+  padding: 5px;
+  background-color: white;
+  border: solid 1px #ffe782;
+  border-radius: 5%;
+  text-align: center;
+}
+
+.text {
+  font-weight:bolder
+}
+
+.title {
+  font-family: 'Boogaloo', cursive;
+  font-size: 2.5rem;
+  color: #5B2018;
+}

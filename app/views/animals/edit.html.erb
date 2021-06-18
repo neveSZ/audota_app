@@ -1,39 +1,64 @@
+<%= stylesheet_link_tag 'edit_animal_page.css' %>
+
 <% @animal.errors.full_messages.each do |message| %>
   <%= message %>
 <% end %>
 
-<h1>Informações do Animal</h1>
-
-<%= form_with model: @animal, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :weight %>
-  <%= f.number_field :weight %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :birthday %>
-  <%= f.date_field :birthday %>
-  <%= f.label :color %>
-  <%= f.select(:color, Animal.colors.map{|key, value| [key.humanize.capitalize, value]}) %>
-  <%= f.label :fur_type %>
-  <%= f.select(:fur_type, Animal.fur_types.map{|key, value| [key.humanize.capitalize, value]}) %>
-  <%= f.label :fur_size %>
-  <%= f.select(:fur_size, Animal.fur_sizes.map{|key, value| [key.humanize.capitalize, value]}) %>
-  <%= f.label :size %>
-  <%= f.select(:size, Animal.sizes.map{|key, value| [key.humanize.capitalize, value]}) %>
-  <%= f.label :media %>
+<div class='container'>
+  <h1 class='title'>Editar Pet</h1>
 
   <% if @animal.medias.attached? %>
     <% @animal.medias.each do |media| %>
       <% if media.content_type.start_with? "video/" %>
         <%= video_tag url_for(media), controls: true %>
       <% elsif media.content_type.start_with? "image/" %>
-        <%= image_tag media %>
+        <%= image_tag media, :class => 'picture' %>
       <% end %>
+      <br>
       <%= link_to 'Remover', delete_media_attachment_path(media.id), method: :delete %>
     <% end %>
   <% end %>
+  
+  <%= form_with model: @animal, local: true do |f| %>
+    <div class='container_right'>
+    <%= f.label :name, :class => 'text' %>
+    <%= f.text_field :name, :class => 'default_input' %>
+    <br>
 
-  <%= f.file_field :medias, multiple: true %>  
-  <%= f.submit 'Concluir' %>
-<% end %>
+    <%= f.label :description, :class => 'text' %>
+    <%= f.text_field :description, :class => 'default_input' %>
+    <br>
+
+    <%= f.label :birthday, :class => 'text' %>
+    <%= f.date_field :birthday, :class => 'default_input' %>
+    <br>
+
+    <%= f.label :weight, :class => 'text' %>
+    <%= f.number_field :weight, :class => 'default_input' %>
+    <br>
+  
+    <%= f.label :size, :class => 'text' %>
+    <%= f.select :size, Animal.sizes.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
+    <br>
+    
+    <%= f.label :color, :class => 'text' %>
+    <%= f.select :color, Animal.colors.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
+    <br>
+
+    <%= f.label :fur_type, :class => 'text' %>
+    <%= f.select :fur_type, Animal.fur_types.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
+    <br>
+    
+    <%= f.label :fur_size, :class => 'text' %>
+    <%= f.select :fur_size, Animal.fur_sizes.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
+    <br>
+
+    </div>
+
+    <%= f.label :media, :class => 'text' %>
+    <%= f.file_field :medias, multiple: true %>  
+    <br>
+
+    <%= f.submit 'Concluir', :class => 'default_button' %>
+  <% end %>
+</div>

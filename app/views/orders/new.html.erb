@@ -1,22 +1,41 @@
+<%= stylesheet_link_tag 'new_order_page.css' %>
+
 <% @order.errors.full_messages.each do |message| %>
   <%= message %>
 <% end %>
+<body>
+  <div class="container">
+    <h1 class="title">Informações para adoção</h1>
 
-<h1>Informações para adoção</h1>
+    <%= form_with model: @order, local: true do |f| %>
+      <div class='container_right'>
+        <%= f.label :name, :class => "text" %>
+        <%= f.text_field :name, :class => "default_input" %>
+        <br>
 
-<%= form_with model: @order, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :cpf %>
-  <%= f.text_field :cpf %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-  <%= f.label :age %>
-  <%= f.number_field :age %>
-  <%= f.label :telephone %>
-  <%= f.text_field :telephone %>
-  <%= f.submit 'Concluir' %>
-  <%= f.hidden_field :animal_id, value: @animal.id %>
-<% end %>
+        <%= f.label :cpf, :class => "text" %>
+        <%= f.text_field :cpf, :class => "default_input" %>
+        <br>
+
+        <%= f.label :email, :class => "text" %>
+        <%= f.text_field :email, :class => "default_input" %>
+        <br>
+
+        <%= f.label :address, :class => "text" %>
+        <%= f.text_field :address, :class => "default_input" %>
+        <br>
+
+        <%= f.label :age, :class => "text" %>
+        <%= f.number_field :age, :class => "default_input" %>
+        <br>
+
+        <%= f.label :telephone, :class => "text" %>
+        <%= f.text_field :telephone, :class => "default_input" %>
+        <br><br>
+      </div>
+      <%= f.submit 'Concluir', :class => "default_button" %>
+      <%= f.hidden_field :animal_id, value: @animal.id %>  
+      
+    <% end %>
+  </div>
+</body>

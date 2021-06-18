@@ -13,3 +13,45 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+
+body{
+  margin: 0 7%;
+  background: url('background.png') repeat top fixed;
+  background-size: cover;
+  font-family: 'Mulish', sans-serif;
+}
+
+.flex_container{
+  display: flex;
+  align-items: center;
+}
+
+.icon{
+  height: 4vh;
+  width: auto;
+  margin: 5px;
+  padding: 0 10px;
+}
+
+.logo{
+  height: 20vh;
+  width: auto;
+  margin: 0 5%;
+}
+
+.logo_name{
+  font-family: 'Boogaloo', cursive;
+  font-size: 9.5vh;
+  font-weight: bold;
+  color: #5B2018;
+  margin: 0 6.5%;
+}
+
+nav{
+  text-align: right;  
+}
+

@@ -1,9 +1,31 @@
-<h1> Pedidos </h1>
+<%= stylesheet_link_tag 'adoption_order_page.css' %>
 
-<% if @orders.any? %>
-    <% @orders.each do |order| %>
-        <%= link_to order.animal.name, order_path(order) %>
-        <%= order.email %>
-        <%= order.created_at %>
+<div class='container'>
+    <h1 class="title">Pedidos de Adoção</h1>
+    <% if @orders.any? %>
+        <% @orders.each do |order| %>
+            <div class="item_container100">
+                <div>
+                    <label class='item'>Pet:</label>
+                    <%= link_to order.animal.name, order_path(order), :class => 'link' %>
+                </div>
+                
+                <div>
+                    <label class='item'>Nome:</label>
+                    <%= order.name %>
+                </div>
+
+                <div>
+                    <label class='item'>E-mail:</label>
+                    <%= order.email %>
+                </div>
+                
+                <div>
+                    <label class='item'>Data:</label>
+                    <%= order.created_at %>
+                </div>
+            </div>
+        <% end %>
     <% end %>
-<% end %>
+</div>
+

@@ -1,25 +1,19 @@
-<h1> Animais </h1>
+<%= stylesheet_link_tag 'favorites_page.css' %>
 
-<%= form_tag(favorites_path, method: :get) do %> 
-  <%= search_field_tag :search, params[:search] %>  
-  <%= select_tag :color, options_for_select(Animal.colors.map {|key, value| [key.humanize.capitalize, value]}, params[:color]), include_blank: true %>
-  <%= select_tag :fur_type, options_for_select(Animal.fur_types.map {|key, value| [key.humanize.capitalize, value]}, params[:fur_type]), include_blank: true %>
-  <%= select_tag :fur_size, options_for_select(Animal.fur_sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:fur_size]), include_blank: true %>
-  <%= select_tag :size, options_for_select(Animal.sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:size]), include_blank: true %>
-  <%= label_tag :age_max %>
-  <%= text_field_tag :age_max, params[:age_max] %>
-  <%= label_tag :age_min %>
-  <%= text_field_tag :age_min, params[:age_min] %>
-  <%= button_tag "Filtrar" %> 
-<% end %>
+<div class='container'>
+  <h1 class='title'>Favoritos</h1>
 
-<% if @animals.any? %>
-    <% @animals.each do |animal| %>
-        <%= link_to animal.name, animal %>
-        <%= animal.status %>        
-        <% if animal.disponivel? && !admin_signed_in? %>
-          <%= link_to 'Adotar', new_order_path(animal_id: animal)%>
-          <%= link_to 'Desfavoritar', favorites_path(animal_id: animal), method: :delete %>
-        <% end %>
-    <% end %>
-<% end %>
+  <% if @animals.any? %>
+      <% @animals.each do |animal| %>
+        <div class='item_container'>  
+          <label class='item'>Pet:</label>
+          <%= link_to animal.name, animal, :class => "btn" %>
+
+          <% if animal.disponivel? && !admin_signed_in? %>
+            <%= link_to 'Adotar', new_order_path(animal_id: animal), :class => 'default_button'%>
+            <%= link_to 'Desfavoritar', favorites_path(animal_id: animal), :class => 'default_button', method: :delete %>
+          <% end %>
+        </div>
+      <% end %>
+  <% end %>
+</div>

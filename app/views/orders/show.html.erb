@@ -1,17 +1,57 @@
-<% if @order.present? %>
-  <h1><% "#{@order.animal.name} - #{@order.email} - #{@order.created_at}" %></h1>
-  
-  <%= @order.status %>
-  <%= @order.cpf %>
-  <%= @order.telephone %>
-  <%= @order.address %>
-  <%= @order.age %>
-  <%= @order.status %>
-  <%= @order.conclusion_date if @order.concluido? %>   
+<%= stylesheet_link_tag 'show_order_page.css' %>
 
-  <% if @order.pendente? %>
-    <%= link_to 'Cancelar', cancel_order_path(@order), method: :delete %>
-    <%= link_to 'Concluir', conclude_order_path(id: @order), method: :post  %>
-  <% end %>  
- <% end %> 
+<div class='container'>
+  <h1 class="title">Informações do Adotante</h1>
+  
+    <% if @order.present? %>
+    <h1><% "#{@order.animal.name} - #{@order.email} - #{@order.created_at}" %></h1>
+      <br>
+      <div class="item_container5">
+        <div>
+        <label class='item'>Nome:</label>
+        <%= @order.name %>
+        <br>
+        </div>
+
+        <div>
+        <label class='item'>Idade:</label>
+        <%= @order.age %>
+        <br>
+        </div>
+        
+        <div>
+        <label class='item'>CPF:</label>
+        <%= @order.cpf %>
+        <br>
+        </div>
+
+        <div>
+        <label class='item'>Endereço:</label>
+        <%= @order.address %>
+        <br>
+        </div>
+
+        <div>
+        <label class='item'>Telefone:</label>
+        <%= @order.telephone %>
+        <br>
+        </div>
+
+        <div>
+        <label class='item'>Situação:</label>
+        <%= @order.status %>
+        <%= @order.conclusion_date if @order.concluido? %>   
+        <br>
+        </div>
+
+        <div>
+        <label class='item'>Adoção ?</label>
+        <% if @order.pendente? %>
+          <%= link_to 'Cancelar', cancel_order_path(@order), method: :delete %>
+          <%= link_to 'Concluir', conclude_order_path(id: @order), method: :post  %>
+        <% end %>  
+        </div>
+      </div>
+  <% end %> 
+ </div>
     

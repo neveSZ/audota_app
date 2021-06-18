@@ -51,7 +51,11 @@ class Animal < ApplicationRecord
   }
 
   def age
-    (Date.today - birthday).to_i
+    if birthday.nil?
+      0
+    else
+      (Date.today - birthday).to_i
+    end
   end
 
   def attach_medias(medias)

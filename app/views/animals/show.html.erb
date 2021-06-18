@@ -9,7 +9,7 @@
   <% if @animal.medias.attached? %>
       <% @animal.medias.each do |media| %>
         <% if media.content_type.start_with? "video/" %>
-          <%= video_tag url_for(media), controls: true %>
+          <%= video_tag url_for(media), controls: true,:class => 'video' %>
         <% elsif media.content_type.start_with? "image/" %>
           <%= image_tag media, :class => 'picture'%>
         <% end %>

@@ -19,7 +19,7 @@
       <%= link_to animal.name, animal, :class => 'titulo' %>
       <% if animal.medias.attached? %>
         <% if animal.medias.first.content_type.start_with? "video/" %>
-          <%= video_tag url_for(animal.medias.first), controls: true %>
+          <%= video_tag url_for(animal.medias.first), controls: true,:class => 'video' %>
         <% elsif animal.medias.first.content_type.start_with? "image/" %>
           <%= image_tag animal.medias.first, :class => 'picture' %>
         <% end %>

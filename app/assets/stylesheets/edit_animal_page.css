@@ -44,6 +44,13 @@
   padding: 0 10px;
 }
 
+.video{
+  height: 30vh;
+  width: 16vw;
+  margin: 5px;
+  padding: 0 10px;
+}
+
 .text {
   font-weight:bolder;
   font-family: "Mulish";

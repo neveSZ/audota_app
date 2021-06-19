@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -24,7 +24,7 @@
           <%= link_to image_tag("icon_exit.png", class: 'icon'), destroy_admin_session_path, method: :delete  %>
         <% else %>
           <%= link_to image_tag("icon_star.png", class: 'icon'), favorites_path %>
-          <%= link_to image_tag("icon_admin.png", class: 'icon'), admin_session_path  %>
+        <%= link_to image_tag("icon_admin.png", class: 'icon'), admin_session_path  %>
         <% end %>
       </nav>
       <div class="flex_container">

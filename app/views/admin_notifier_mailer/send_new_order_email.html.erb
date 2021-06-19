@@ -12,6 +12,6 @@
     <p><strong><%= translate 'activerecord.attributes.order.address'%>: </strong><%= @order.address %> </p>
     <p><strong><%= translate 'activerecord.attributes.order.age'%>: </strong><%= @order.age %> </p>
     <p><strong><%= translate 'activerecord.attributes.order.telephone'%>: </strong><%= @order.telephone %> </p>
-    <p><strong> URL: </strong><%= orders_url()+"/#{@order.id}" %> </p>
+    <p> <%= link_to 'Acessar página da adoção', order_url(@order.id)%> </p>
   </body>
 </html>

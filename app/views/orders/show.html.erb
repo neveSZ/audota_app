@@ -1,55 +1,52 @@
 <%= stylesheet_link_tag 'show_order_page.css' %>
 
 <div class='container'>
-  <h1 class="title">Informações do Adotante</h1>
+  <h2>Informações do Adotante</h2>
   
     <% if @order.present? %>
     <h1><% "#{@order.animal.name} - #{@order.email} - #{@order.created_at}" %></h1>
-      <br>
-      <div class="item_container5">
+      <div class="flex-container-column-start">
         <div>
-        <label class='item'>Nome:</label>
-        <%= @order.name %>
-        <br>
+        <label>Nome:</label>
+          <%= @order.name %>
         </div>
 
         <div>
-        <label class='item'>Idade:</label>
+        <label>Idade:</label>
         <%= @order.age %>
-        <br>
         </div>
         
         <div>
-        <label class='item'>CPF:</label>
+        <label>CPF:</label>
         <%= @order.cpf %>
-        <br>
         </div>
 
         <div>
-        <label class='item'>Endereço:</label>
+        <label>Endereço:</label>
         <%= @order.address %>
-        <br>
         </div>
 
         <div>
-        <label class='item'>Telefone:</label>
+        <label>Telefone:</label>
         <%= @order.telephone %>
-        <br>
         </div>
 
         <div>
-        <label class='item'>Situação:</label>
+        <label>Situação:</label>
         <%= @order.status %>
         <%= @order.conclusion_date if @order.concluido? %>   
         <br>
         </div>
 
         <div>
-        <label class='item'>Adoção ?</label>
+        <label>Adoção ?</label>
+        <br>
+        <div class='container-center'>
         <% if @order.pendente? %>
-          <%= link_to 'Cancelar', cancel_order_path(@order), method: :delete %>
-          <%= link_to 'Concluir', conclude_order_path(id: @order), method: :post  %>
+          <%= link_to 'Cancelar', cancel_order_path(@order), method: :delete, :class => 'button' %>
+          <%= link_to 'Concluir', conclude_order_path(id: @order), method: :post, :class => 'button'  %>
         <% end %>  
+        </div>
         </div>
       </div>
   <% end %> 

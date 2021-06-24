@@ -1,12 +1,9 @@
-<%= stylesheet_link_tag 'edit_animal_page.css' %>
-
 <% @animal.errors.full_messages.each do |message| %>
   <%= message %>
-  <br>
 <% end %>
 
 <div class='container'>
-  <h1 class='title'>Editar Pet</h1>
+  <h2>Editar Pet</h2>
 
   <% if @animal.medias.attached? %>
     <% @animal.medias.each do |media| %>
@@ -22,45 +19,53 @@
   <% end %>
   
   <%= form_with model: @animal, local: true do |f| %>
-    <div class='container_right'>
-    <%= f.label :name, :class => 'text' %>
-    <%= f.text_field :name, :class => 'default_input' %>
-    <br>
-
-    <%= f.label :description, :class => 'text' %>
-    <%= f.text_field :description, :class => 'default_input' %>
-    <br>
-
-    <%= f.label :birthday, :class => 'text' %>
-    <%= f.date_field :birthday, :class => 'default_input' %>
-    <br>
-
-    <%= f.label :weight, :class => 'text' %>
-    <%= f.number_field :weight, :class => 'default_input' %>
-    <br>
-  
-    <%= f.label :size, :class => 'text' %>
-    <%= f.select :size, Animal.sizes.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
-    <br>
-    
-    <%= f.label :color, :class => 'text' %>
-    <%= f.select :color, Animal.colors.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
-    <br>
-
-    <%= f.label :fur_type, :class => 'text' %>
-    <%= f.select :fur_type, Animal.fur_types.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
-    <br>
-    
-    <%= f.label :fur_size, :class => 'text' %>
-    <%= f.select :fur_size, Animal.fur_sizes.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
-    <br>
-
+    <div class='container-left'>
+    <%= f.label :name %>
     </div>
+    <%= f.text_field :name, :class => 'default_input' %>
+    
+    <div class='container-left'>
+    <%= f.label :description %>
+    </div>
+    <%= f.text_field :description, :class => 'default_input' %>
+    
+    <div class='container-left'>
+    <%= f.label :birthday %>
+    </div>
+    <%= f.date_field :birthday, :class => 'default_input' %>
+    
+    <div class='container-left'>
+    <%= f.label :weight %>
+    </div>
+    <%= f.number_field :weight, :class => 'default_input' %>
+  
+    <div class='container-left'>
+    <%= f.label :size %>
+    </div>
+    <%= f.select :size, Animal.sizes.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
+    
+    <div class='container-left'>
+    <%= f.label :color %>
+    </div>
+    <%= f.select :color, Animal.colors.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
+    
+    <div class='container-left'>
+    <%= f.label :fur_type %>
+    </div>
+    <%= f.select :fur_type, Animal.fur_types.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
+    
+    <div class='container-left'>
+    <%= f.label :fur_size %>
+    </div>
+    <%= f.select :fur_size, Animal.fur_sizes.map{|key, value| [key.humanize.capitalize, value]}, {}, :class => 'default_input' %>
 
-    <%= f.label :media, :class => 'text' %>
+    <div class='container-left'>
+    <%= f.label :media %>
+    </div>
     <%= f.file_field :medias, multiple: true %>  
-    <br>
-
-    <%= f.submit 'Concluir', :class => 'default_button' %>
+  
+    <%= f.submit 'Concluir', :class => 'button' %>
+  </div>
+  
   <% end %>
 </div>

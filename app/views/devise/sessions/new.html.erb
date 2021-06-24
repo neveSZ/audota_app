@@ -1,17 +1,20 @@
-<%= stylesheet_link_tag 'signin_page.css' %>
 <body>
-  <div class='login'>
-    <h2 class="title">Login</h2>
+  <div class='container'>
+    <h2>Login</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.label :email, :class => 'text' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'default_input' %>
+      <div class='container-left'>
+      <%= f.label :email %>
+      </div>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
     <div class="field">
-      <%= f.label :password, :class => 'text' %>
-      <%= f.password_field :password, autocomplete: "current-password", :class => 'default_input' %>
+      <div class='container-left'>
+      <%= f.label :password %>
+      </div>
+      <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
@@ -20,10 +23,9 @@
         <%= f.label :remember_me %>
       </div>
     <% end %>
-    <br>
 
     <div class="actions">
-      <%= f.submit "Entrar", :class => 'default_button' %>
+      <%= f.submit "Entrar", :class => 'button' %>
     </div>
     <br>
   <% end %>

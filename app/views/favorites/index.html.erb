@@ -1,17 +1,17 @@
 <%= stylesheet_link_tag 'favorites_page.css' %>
 
 <div class='container'>
-  <h1 class='title'>Favoritos</h1>
+  <h2>Favoritos</h2>
 
   <% if @animals.any? %>
       <% @animals.each do |animal| %>
         <div class='item_container'>  
-          <label class='item'>Pet:</label>
-          <%= link_to animal.name, animal, :class => "btn" %>
+          <label>Pet:</label>
+          <%= link_to animal.name, animal, :class => "link" %>
 
           <% if animal.disponivel? && !admin_signed_in? %>
-            <%= link_to 'Adotar', new_order_path(animal_id: animal), :class => 'default_button'%>
-            <%= link_to 'Desfavoritar', favorites_path(animal_id: animal), :class => 'default_button', method: :delete %>
+            <%= link_to 'Adotar', new_order_path(animal_id: animal), :class => 'button'%>
+            <%= link_to 'Desfavoritar', favorites_path(animal_id: animal), :class => 'button', method: :delete %>
           <% end %>
         </div>
       <% end %>

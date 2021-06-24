@@ -8,47 +8,65 @@
 
 <body>
   <div class='container'>
-    <h1 class="title">Novo Pet</h1>
+    <h2>Novo Pet</h2>
       
-      <div class='container_right'>
       <%= form_with model: @animal, local: true do |f| %>
-      <%= f.label :name, :class => 'text1' %>
-      <%= f.text_field :name, :class => 'default_input' %>
-      <br>
-
-      <%= f.label :weight, :class => 'text1' %>
-      <%= f.number_field :weight, :class => 'default_input' %>
-      <br>
-
-      <%= f.label :description, :class => 'text1' %>
-      <%= f.text_field :description, :class => 'default_input' %>
-      <br>
-
-      <%= f.label :birthday, :class => 'text1' %>
-      <%= f.date_field :birthday, :class => 'default_input' %>
-      <br>
-
-      <%= f.label :color, :class => 'text1' %>
-      <%= f.select(:color, Animal.colors.map{|key, value| [key.humanize.capitalize, value]}) %>
-      <br>
-
-      <%= f.label :fur_type, :class => 'text1' %>
-      <%= f.select(:fur_type, Animal.fur_types.map{|key, value| [key.humanize.capitalize, value]}) %>
-      <br>
-
-      <%= f.label :fur_size, :class => 'text1' %>
-      <%= f.select(:fur_size, Animal.fur_sizes.map{|key, value| [key.humanize.capitalize, value]}) %>
-      <br>
-
-      <%= f.label :size, :class => 'text1' %>
-      <%= f.select(:size, Animal.sizes.map{|key, value| [key.humanize.capitalize, value]}) %>
+      
+      <div class='container-left'>
+      <%= f.label :name %>
       </div>
+      <%= f.text_field :name %>
+      <br>
 
-      <%= f.label :medias, :class => 'text1' %>
+      <div class='container-left'>
+      <%= f.label :weight %>
+      </div>
+      <%= f.number_field :weight %>
+      <br>
+
+      <div class='container-left'>
+      <%= f.label :description %>
+      </div>
+      <%= f.text_field :description %>
+      <br>
+
+      <div class='container-left'>
+      <%= f.label :birthday %>
+      </div>
+      <%= f.date_field :birthday %>
+      <br>
+
+      <div class='container-left'>
+      <%= f.label :color %>
+      </div>
+      <%= f.select :color, Animal.colors.map{|key, value| [key.humanize.capitalize, value]} %>
+      <br>
+
+      <div class='container-left'>
+      <%= f.label :fur_type %>
+      </div>
+      <%= f.select :fur_type, Animal.fur_types.map{|key, value| [key.humanize.capitalize, value]} %>
+      <br>
+
+      <div class='container-left'>
+      <%= f.label :fur_size %>
+      </div>
+      <%= f.select :fur_size, Animal.fur_sizes.map{|key, value| [key.humanize.capitalize, value]} %>
+      <br>
+
+      <div class='container-left'>
+      <%= f.label :size %>
+      </div>
+      <%= f.select :size, Animal.sizes.map{|key, value| [key.humanize.capitalize, value]} %>
+      <br>
+  
+      <div class='container-left'>
+      <%= f.label :medias %>
+      </div>
       <%= f.file_field :medias, multiple: true %>  
       <br>
       
-      <%= f.submit 'Concluir', :class => 'default_button' %>
+      <%= f.submit 'Concluir', :class => 'button' %>
       <% end %>
   </div>
 </body>

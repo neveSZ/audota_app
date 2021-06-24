@@ -2,39 +2,48 @@
 
 <% @order.errors.full_messages.each do |message| %>
   <%= message %>
-    <br>
 <% end %>
 <body>
   <div class="container">
-    <h1 class="title">Informações para adoção</h1>
+    <h2>Informações para adoção</h2>
 
     <%= form_with model: @order, local: true do |f| %>
-      <div class='container_right'>
-        <%= f.label :name, :class => "text" %>
-        <%= f.text_field :name, :class => "default_input" %>
-        <br>
-
-        <%= f.label :cpf, :class => "text" %>
-        <%= f.text_field :cpf, :class => "default_input" %>
-        <br>
-
-        <%= f.label :email, :class => "text" %>
-        <%= f.text_field :email, :class => "default_input" %>
-        <br>
-
-        <%= f.label :address, :class => "text" %>
-        <%= f.text_field :address, :class => "default_input" %>
-        <br>
-
-        <%= f.label :age, :class => "text" %>
-        <%= f.number_field :age, :class => "default_input" %>
-        <br>
-
-        <%= f.label :telephone, :class => "text" %>
-        <%= f.text_field :telephone, :class => "default_input" %>
-        <br><br>
-      </div>
-      <%= f.submit 'Concluir', :class => "default_button" %>
+        
+        <div class='container-left'>
+          <%= f.label :name %>
+        </div>
+          <%= f.text_field :name %>
+      
+        <div class='container-left'>
+        <%= f.label :cpf %>
+        </div>
+        <%= f.text_field :cpf %>
+      
+        <div class='container-left'>
+        <%= f.label :email %>
+        </div>
+        <%= f.text_field :email %>
+        
+        <div class='container-left'>
+        <%= f.label :address %>
+        </div>
+        <%= f.text_field :address %>
+      
+        <div class='container-left'>
+        <%= f.label :age %>
+        </div>
+        <%= f.number_field :age %>
+        
+        <div class='container-left'>
+        <%= f.label :telephone %>
+        </div>
+        <%= f.text_field :telephone %>
+        
+        
+      <br>
+      <%= f.submit 'Concluir', onclick="function()", :class => "button" %>
+      
+        
       <%= f.hidden_field :animal_id, value: @animal.id %>  
       
     <% end %>

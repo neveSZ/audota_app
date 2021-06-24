@@ -14,44 +14,50 @@
  *= require_self
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
 
 body{
-  margin: 0 7%;
+  margin: 0 10%;
   background: url('background.png') repeat top fixed;
   background-size: cover;
-  font-family: 'Mulish', sans-serif;
+  font-family: 'Boogaloo', sans-serif;
+}
+
+.nav-button{
+  margin: 0 2px;
+  padding: 2px 15px;
+  text-decoration: none;
+  border-radius: 10px; 
+  font-size: 1.25rem;
+  background-color: #ffe782;
+  color: black;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.nav-button:hover{
+  background-color:#acd2d0;
+  color: white;
+  opacity: 1;
 }
 
 .flex_container{
   display: flex;
   align-items: center;
+  padding: 10px;
 }
 
-.icon{
-  height: 4vh;
-  width: auto;
-  margin: 5px;
-  padding: 0 10px;
+h1{
+  margin: 0 5%;
+  font-size: 9vh;
+  color: #5B2018;
 }
 
 .logo{
   height: 20vh;
   width: auto;
-  margin: 0 5%;
-}
-
-.logo_name{
-  font-family: 'Boogaloo', cursive;
-  font-size: 9.5vh;
-  font-weight: bold;
-  color: #5B2018;
-  margin: 0 6.5%;
 }
 
 nav{
   text-align: right;  
 }
-

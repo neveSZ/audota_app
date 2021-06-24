@@ -4,19 +4,19 @@
   <%= form_tag(animals_path, method: :get) do %> 
     <label class='text'>Pesquisar</label>
     <%= search_field_tag :search, params[:search], :class => 'filter_input' %>
+    <label class='text'>Porte</label>
     <%= select_tag :size, options_for_select(Animal.sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:size]), include_blank: true, :class => 'filter_input' %>
-    <%= select_tag :color, options_for_select(Animal.colors.map {|key, value| [key.humanize.capitalize, value]}, params[:color]), include_blank: true, :class => 'filter_input' %>
+    <label class='text'>Pêlo</label>
     <%= select_tag :fur_size, options_for_select(Animal.fur_sizes.map {|key, value| [key.humanize.capitalize, value]}, params[:fur_size]), include_blank: true, :class => 'filter_input' %>
-    <%= button_tag "Buscar", :class => 'search_button' %> 
+    <%= button_tag "Buscar", :class => 'button' %> 
   <% end %>
 </div>
-<div class='flex_container123'>
 
 <div class='flex_container'>
 <% if @animals.any? %>
   <% @animals.each do |animal| %>
     <div class='pet_container'>
-      <%= link_to animal.name, animal, :class => 'titulo' %>
+      <%= link_to animal.name, animal, :class => 'title' %>
       <% if animal.medias.attached? %>
         <% if animal.medias.first.content_type.start_with? "video/" %>
           <%= video_tag url_for(animal.medias.first), controls: true,:class => 'video' %>
@@ -26,12 +26,14 @@
       <% end %>
       <br>
       <% if admin_signed_in? %> 
-        <%= link_to 'Editar pet', edit_animal_path(animal), :class => 'default_button1' %>
+      <div class='container-center'>  
+        <%= link_to 'Editar pet', edit_animal_path(animal), :class => 'button' %>
+      </div>
       <% else %>       
         <% if animal.disponivel? %>
           <div class='button_container'>
-            <%= link_to image_tag("icon_favorite.png", class: 'icon1'), favorites_path(animal_id: animal), method: :post %>
-            <%= link_to image_tag("icon_adopt.png", class: 'icon1'), new_order_path(animal_id: animal) %>
+            <%= link_to image_tag("icon_favorite.png", class: 'icon'), favorites_path(animal_id: animal), method: :post %>
+            <%= link_to image_tag("icon_adopt.png", class: 'icon'), new_order_path(animal_id: animal) %>
           </div>
       <% end %>
     <% end %>

@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_06_08_024023) do
     t.integer "color"
     t.integer "fur_type"
     t.string "name"
-    t.integer "weight"
+    t.float "weight"
     t.integer "size"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false

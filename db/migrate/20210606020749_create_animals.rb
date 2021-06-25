@@ -7,7 +7,7 @@ class CreateAnimals < ActiveRecord::Migration[6.1]
       t.integer :color
       t.integer :fur_type
       t.string :name
-      t.integer :weight
+      t.float :weight
       t.integer :size
       t.text :description
 
